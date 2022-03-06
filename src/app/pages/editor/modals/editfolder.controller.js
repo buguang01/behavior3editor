@@ -42,7 +42,7 @@
         vm.original = folder;
         vm.action = 'Update';
         p._selectedFolder = folder;
-        console.log("EditFolderController:", folder)
+        console.log("EditFolderController:", folder);
         vm.showExport = folder.category === "tree";
       } else {
         vm.folder = new b3e.Folder();
@@ -89,43 +89,46 @@
           'Are you sure you want to remove this folder?\n\nNote: all blocks using this folder will be removed.'
         ).then(function () {
           var p = $window.editor.project.get();
-          console.log("removeTrees.p", p)
-          console.log("removeTrees.vm.original", vm.original)
+          console.log("removeTrees.p", p);
+          console.log("removeTrees.vm.original", vm.original);
           p.folders.remove(vm.original);
+          var reli = []
 
           if (vm.original.category === "tree") {
-            var reli = []
             p.trees.each(function (tree) {
-              console.log("removeTrees.tree", tree)
-              console.log("removeTrees.tree.folder", tree._root._parent)
+              console.log("removeTrees.tree", tree);
+              console.log("removeTrees.tree.folder", tree._root._parent);
 
               if (vm.original.name === tree._root._parent) {
                 reli.push(tree);
               }
             }, this);
-            reli.forEach(tree => {
+            for (var index = 0; index < reli.length; index++) {
+              var tree = reli[index];
               p.trees.remove(tree);
-              console.log("removeTrees.trees.remove:", tree)
-            });
-
-
+              console.log("removeTrees.trees.remove:", tree);
+            }
+            // reli.forEach(function(tree) {
+            //   p.trees.remove(tree);
+            //   console.log("removeTrees.trees.remove:", tree);
+            // });
           } else {
-            var reli = []
             p.nodes.each(function (node) {
               if (node.isDefault) {
                 return
               }
-              console.log("removeTrees.node", node)
+              console.log("removeTrees.node", node);
               // console.log("removeTrees.node.folder", node._root._parent)
 
               if (vm.original.name === node.parent) {
                 reli.push(node);
               }
             }, this);
-            reli.forEach(node => {
+            for (var i = 0; i < reli.length; i++) {
+              var node = reli[i];
               p.nodes.remove(node);
-              console.log("removeTrees.nodes.remove:", node)
-            });
+              console.log("removeTrees.nodes.remove:", node);
+            };
           }
 
           notificationService.success(
