@@ -82,9 +82,19 @@ b3e.editor.ExportManager = function (editor) {
       selectedTree: (tree ? tree._id : null),
       trees: [],
       custom_nodes: [],
-      custom_folders: this.foldersToData(),
+      custom_folders: [],
     };
-
+    if (!folder.isDefault) {
+      data.custom_folders.push({
+        version: b3e.VERSION,
+        scope: 'folder',
+        name: folder.name,
+        category: folder.category,
+        title: folder.title,
+        description: folder.description,
+        parent: folder.parent,
+      });
+    }
     project.trees.each(function (tree) {
       var d = this.treeToData(tree, true);
       d.id = tree._id;
