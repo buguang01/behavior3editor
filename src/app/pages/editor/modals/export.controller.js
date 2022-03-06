@@ -44,13 +44,16 @@
       var e = $window.editor.export;
 
       if (vm.type === 'project' && vm.format === 'json') {
-        _createJson(e.projectToData());
+        _createJson(e.projectToDataByTree());
       }
       else if (vm.type === 'tree' && vm.format === 'json') {
         _createJson(e.treeToData());
       }
       else if (vm.type === 'nodes' && vm.format === 'json') {
         _createJson(e.nodesToData());
+      }
+      else if (vm.type === 'folder' && vm.format === 'json') {
+        _createJson(e.folderToData());
       }
     }
 

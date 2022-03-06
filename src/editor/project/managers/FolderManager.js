@@ -36,6 +36,9 @@ b3e.project.FolderManager = function(editor, project) {
     return folder;
   };
 
+  this.getSelected = function() {
+    return project._selectedFolder;
+  };
   /**
    * 
    */

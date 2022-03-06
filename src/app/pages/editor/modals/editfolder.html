@@ -55,6 +55,7 @@
 
       <div class="b3modal-buttons">
         <input type="button" class="btn btn-danger btn-lg pull-left" ng-click="editfolder.remove()" value="Remove" ng-show="editfolder.original">
+        <input type="button" class="btn btn-default btn-lg"  ui-sref="editor.export({type:'folder', format:'json'})" value="Export" ng-show="editfolder.showExport">
         
         <input type="button" class="btn btn-default btn-lg" ui-sref="editor" value="Cancel">
         <button type="submit" class="btn btn-success btn-lg" ng-disabled="nodeForm.name.$invalid">Save</button>
