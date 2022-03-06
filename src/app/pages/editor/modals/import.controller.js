@@ -54,7 +54,7 @@
 
       try {
         if (vm.type === 'project' && vm.format === 'json') {
-          i.projectAsData(data.data);
+          i.projectAsData(data);
         }
         else if (vm.type === 'tree' && vm.format === 'json') {
           i.treeAsData(data);
