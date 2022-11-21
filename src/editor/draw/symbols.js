@@ -118,8 +118,12 @@
   };
 
   b3e.draw.textSymbol = function(block, settings) {
+    var title = block.getTitle();
+    if (title.substr(0,3) == "Mem"){
+      title = "✷" + title.substr(3);
+    }
     var text = new createjs.Text(
-        block.getTitle(),
+        title,
         '18px Arial',
         settings.get('block_symbol_color')
     );
@@ -127,6 +131,14 @@
 
     var bounds = text.getBounds();
     text.regY = bounds.height/2;
+
+/* 
+如果this.name中有Mem那就把星号加上去
+    shape.graphics.setStrokeStyle(swidth, 'round');
+    shape.graphics.beginStroke(scolor);
+    shape.graphics.beginFill(scolor);
+    shape.graphics.drawPolyStar(0, -ssize*0.75, ssize/2, 6, ssize/10, 0);
+*/
 
     // text.x = -block._width/2;
     // text.y = -block._height/2;
